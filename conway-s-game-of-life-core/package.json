@@ -1,0 +1,15 @@
+{
+  "name": "conway-s-game-of-life-core",
+  "version": "1.0.0",
+  "description": "Conway's Game of Life",
+  "main": "conway-s-game-of-life.js",
+  "scripts": {
+    "test": "nyc jasmine"
+  },
+  "author": "Olivér Kocsis",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "jasmine": "^3.4.0",
+    "nyc": "^14.1.1"
+  }
+}

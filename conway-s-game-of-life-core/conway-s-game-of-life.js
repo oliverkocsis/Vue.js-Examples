@@ -1,4 +1,4 @@
-function ConwaysGameOfLife(_dimension) {
+exports.ConwaysGameOfLife = function(_dimension) {
     this.DEAD = 0;
     this.ALIVE = 1;
 

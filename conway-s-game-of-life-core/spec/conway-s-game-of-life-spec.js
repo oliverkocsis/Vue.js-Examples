@@ -1,3 +1,5 @@
+var ConwaysGameOfLife = require('../conway-s-game-of-life').ConwaysGameOfLife;
+
 var dimension = 3;
 
 describe("The universe of the Game of Life", function () {
