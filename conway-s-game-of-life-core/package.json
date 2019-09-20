@@ -4,11 +4,17 @@
   "description": "Conway's Game of Life",
   "main": "conway-s-game-of-life.js",
   "scripts": {
-    "test": "nyc jasmine"
+    "build": "babel src -d lib",
+    "test": "jasmine",
+    "coverage": "nyc jasmine"
   },
   "author": "Olivér Kocsis",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
     "jasmine": "^3.4.0",
     "nyc": "^14.1.1"
   }

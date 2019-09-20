@@ -1,4 +1,4 @@
-var ConwaysGameOfLife = require('../conway-s-game-of-life').ConwaysGameOfLife;
+import { ConwaysGameOfLife } from '../src/conway-s-game-of-life'
 
 var dimension = 3;
 
@@ -24,19 +24,18 @@ describe("The universe of the Game of Life", function () {
   });
 
   it("is a two-dimensional orthogonal grid of square cells", function () {
-    expect(function () { game.getState(0, 0) }).not.toThrowError();
-    expect(function () { game.getState(dimension - 1, dimension - 1) }).not.toThrowError();
+    expect(function () { game.isAlive(0, 0) }).not.toThrowError();
+    expect(function () { game.isAlive(dimension - 1, dimension - 1) }).not.toThrowError();
   });
 
   describe("each of which (cells) is in one of two possible states", function () {
     it("alive", function () {
-      game.setState(0, 0, game.ALIVE);
-      expect(game.getState(0, 0)).toBe(game.ALIVE);
+      game.setAlive(0, 0);
+      expect(game.isAlive(0, 0)).toBe(true);
     });
 
     it("dead", function () {
-      game.setState(0, 0, game.DEAD);
-      expect(game.getState(0, 0)).toBe(game.DEAD);
+      expect(game.isAlive(0, 0)).toBe(false);
     });
   });
 
@@ -50,25 +49,25 @@ describe("Every cell interacts with its eight neighbours", function () {
   });
 
   it("which are the cells that are horizontally adjacent", function () {
-    game.setState(1, 0, game.ALIVE);
-    game.setState(1, 1, game.ALIVE);
-    game.setState(1, 2, game.ALIVE);
+    game.setAlive(1, 0);
+    game.setAlive(1, 1);
+    game.setAlive(1, 2);
     expect(game.countNeighbours(1, 1)).toBe(2);
   });
 
   it("which are the cells that are vertically adjacent", function () {
-    game.setState(0, 1, game.ALIVE);
-    game.setState(1, 1, game.ALIVE);
-    game.setState(2, 1, game.ALIVE);
+    game.setAlive(0, 1);
+    game.setAlive(1, 1);
+    game.setAlive(2, 1);
     expect(game.countNeighbours(1, 1)).toBe(2);
   });
 
   it("which are the cells that are diagonally adjacent", function () {
-    game.setState(0, 0, game.ALIVE);
-    game.setState(0, 2, game.ALIVE);
-    game.setState(2, 2, game.ALIVE);
-    game.setState(2, 0, game.ALIVE);
-    game.setState(1, 1, game.ALIVE);
+    game.setAlive(0, 0);
+    game.setAlive(0, 2);
+    game.setAlive(2, 2);
+    game.setAlive(2, 0);
+    game.setAlive(1, 1);
     expect(game.countNeighbours(1, 1)).toBe(4);
   });
 });
