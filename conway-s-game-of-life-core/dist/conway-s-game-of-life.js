@@ -97,3 +97,4 @@ function () {
 exports.ConwaysGameOfLife = ConwaysGameOfLife;
 ConwaysGameOfLife.STATE_ALIVE = true;
 ConwaysGameOfLife.STATE_DEAD = false;
+//# sourceMappingURL=conway-s-game-of-life.js.map
