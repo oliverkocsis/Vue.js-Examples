@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Vue.js Example - Product Backlog</title>
+</head>
+
+<body style="margin-top: 25px;">
+    <div class="container" id="app">
+
+        <!-- List -->
+        <div class="row" v-if="view == viewList">
+            <div class="col-sm" style="margin-bottom: 25px;">
+                <button class="btn btn-primary" @click.prevent="create">Create</button>
+            </div>
+        </div>
+        <div class="row" v-if="view == viewList">
+            <div class="col-sm">
+                <ul class="list-group" v-if="items.length == 0">
+                    <li class="list-group-item disabled" aria-disabled="true">Your product backlog is empty</li>
+                </ul>
+                <div class="list-group" v-else>
+                    <a href="#" class="list-group-item list-group-item-action" v-for="(i, index) in items"
+                        @click.prevent="select(index)">
+                        {{ i.title}}</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="row" v-if="view == viewForm">
+            <div class="col-sm">
+                <form @submit.prevent>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" v-model="item.title">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="5" v-model="item.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Acceptance Criteria</label>
+                        <textarea class="form-control" rows="5" v-model="item.criteria"></textarea>
+                    </div>
+                    <button class="btn btn-primary" @click.prevent="save">Save</button>
+                    <button class="btn btn-secondary" @click.prevent="cancel">Cancel</button>
+                    <button class="btn btn-danger float-right" @click.prevent="remove" v-if="mode == modeEdit">Remove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
