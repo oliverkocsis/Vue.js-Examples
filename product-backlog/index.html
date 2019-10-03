@@ -52,7 +52,8 @@
                     </div>
                     <button class="btn btn-primary" @click.prevent="save">Save</button>
                     <button class="btn btn-secondary" @click.prevent="cancel">Cancel</button>
-                    <button class="btn btn-danger float-right" @click.prevent="remove" v-if="mode == modeEdit">Remove</button>
+                    <button class="btn btn-danger float-right" @click.prevent="remove"
+                        v-if="mode == modeEdit">Remove</button>
                 </form>
             </div>
         </div>
@@ -64,6 +65,25 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCuw94OI9lz1OQNY1TKAiOP20qe710Bnpw",
+            authDomain: "vuejs-product-backlog.firebaseapp.com",
+            databaseURL: "https://vuejs-product-backlog.firebaseio.com",
+            projectId: "vuejs-product-backlog",
+            storageBucket: "",
+            messagingSenderId: "836317249078",
+            appId: "1:836317249078:web:bebfd23f84ea87a4f9e297"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

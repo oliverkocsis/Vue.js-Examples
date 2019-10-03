@@ -11,7 +11,9 @@ var app = new Vue({
         view: "list",
         modeEdit: "edit",
         modeNew: "new",
-        mode: ""
+        mode: "",
+        db: firebase.firestore(),
+        collectionItems: "items"
     },
     methods: {
         select(index) {
@@ -29,8 +31,18 @@ var app = new Vue({
         },
         save() {
             console.log('save', this.mode);
-            this.mode == this.modeNew ? this.items.push(this.item) : this.items.splice(this.selected, 1, this.item);
-            this.view = this.viewList;
+            let _this = this;
+            this.db.collection(this.collectionItems).add({
+                title: this.item.title ? this.item.title : '',
+                description: this.item.description ? this.item.description : '',
+                criteria: this.item.criteria ? this.item.criteria : ''
+            }).then(function (docRef) {
+                console.log("Item saved with ID: ", docRef.id);
+                _this.mode == _this.modeNew ? _this.items.push(_this.item) : _this.items.splice(_this.selected, 1, _this.item);
+                _this.view = _this.viewList;
+            }).catch(function (error) {
+                console.error("Error sacing document: ", error);
+            });
         },
         cancel() {
             console.log('cancel');
@@ -41,5 +53,15 @@ var app = new Vue({
             this.items.splice(this.selected, 1);
             this.view = this.viewList;
         }
+    },
+    created() {
+        let _this = this;
+        this.db.collection(this.collectionItems).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.id, doc.data());
+                    _this.items.push(doc.data());
+                });
+            });
     }
 })
